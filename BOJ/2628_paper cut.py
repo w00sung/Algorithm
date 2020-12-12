@@ -1,40 +1,35 @@
-################# 상한, 하한 ####################
+############### 꼭지점 초기화 할 때, 상한만 넣어줌 ##################
 
 import sys
 read = sys.stdin.readline
 
 # 사각형 각 꼭지점을 a,b,c,d
-# a : 가로 상한, b : 세로 상한
+
 a, b = map(int,read().rstrip().split())
-# c : 가로 하한, d: 세로 하한
-c, d = 0, 0
 n = int(read())
 
-# 기준 : 변의 중앙
-mx, my = 0, 0
+## Fail Block ##
+x_list = [a]
+y_list = [b]
 for _ in range(n):
   # info : 정보, loc : 위치
   info, loc = map(int,read().rstrip().split())
-  # 기준 정보 mx : 가로, my : 세로
-  mx = (a+c)/2
-  my = (b+d)/2
+  # 기준 정보
 
-  # 가로
+  # 가로 자르기
   if info == 0:
-    if loc >= my:
-      b = min(b,loc)
-
-    else:
-      d = max(d,loc)
-
-  # 가로 정보
+    y_list.append(loc)
   else:
-    # 상한
-    if loc >= mx:
-      a = min(a,loc)
+    x_list.append(loc)
 
-    else:
-      c = max(c,loc)
-  print
+y_list.sort()
+x_list.sort()
 
-print((a-c)*(b-d))
+dx_list = []
+dy_list = []
+for i in range(1,len(x_list)):
+  dy_list.append(x_list[i]-x_list[i-1])
+  for j in range(1,len(y_list)):
+    dx_list.append(y_list[j]-y_list[j-1])
+
+print(max(dy_list)* max(dx_list))
