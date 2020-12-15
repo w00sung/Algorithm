@@ -16,7 +16,6 @@ for w in word:
 word_li.sort(key = lambda x : (x[1],x[0]))
 
 # 길이 같은 것 끼리 묶기
-print(word_li)
 
 for i in range(len(word_li)):
     print(word_li[i][0])
