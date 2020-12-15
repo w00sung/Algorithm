@@ -1,4 +1,5 @@
 import sys
+sys.setrecursionlimit(10**8)
 read = sys.stdin.readline
 
 n = int(read())
@@ -47,7 +48,7 @@ def n_queens(i, col):
         # 유망한데,
         # 아직 안갔으면, 트리 계속 옆으로 한칸 이동해놓고 들어가봐!
         else:
-            # 다시 돌아오면, 값 다시 넣어줄거야.
+            # 다시 돌아오면, i는 유지되고, 값 다시 넣어줄거야.
             for j in range(1,n+1):
                 col[i+1] = j
                 # 더 깊숙이 있는 친구 +1 하면서 돌려주고, 찍어주기!
