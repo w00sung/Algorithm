@@ -4,7 +4,7 @@ read = sys.stdin.readline
 n, want_sum = map(int,read().rstrip().split())
 trees = list(map(int,read().rstrip().split()))
 
-
+# 지금 자른 나무_합
 def sum_cut(trees,cutter):
     sum_tree = 0
     for tree in trees:
@@ -17,7 +17,7 @@ def sum_cut(trees,cutter):
 # trees: 나무들, want_sum: 원하는 cutting 길이, strt,end : 0부터 최대치까지
 def binary_search(trees, want_sum, strt,end):
 
-    # "적어도"니까 최대한 좁힌 후 그 놈을 뽑는다.
+    # 최대한 좁힌 후 그 놈을 뽑는다.
     while strt <= end:
     
         cutter = (strt+end) // 2
@@ -35,10 +35,11 @@ def binary_search(trees, want_sum, strt,end):
         else:
             end = cutter - 1
     
-    # "적어도"
+    # "적어도" -- 
+    # 합이 커진 상태로 나오면 그놈 그대로
     if now_sum >= want_sum:
         return cutter
-
+    # 합이 작아진 상태로 나오면 커터 1개 낮추기
     else:
 
         return cutter-1
