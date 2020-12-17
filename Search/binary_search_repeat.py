@@ -18,4 +18,3 @@ def binary_search_repeat(data, find, strt, end):
 
     # strt > end 가 되면
     return None
-        
