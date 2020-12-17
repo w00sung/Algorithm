@@ -59,6 +59,7 @@ for i in range(0,max_height+1):
     # 수면 올릴 때마다 초기화
     i_cnt = 0
     visited = [[0] * n for i in range(n)]
+    # 이미 간 것은 안가게 할 수도 있다.
     for j in range(n):
         for k in range(n):
             if(dfs(i,j,k)):

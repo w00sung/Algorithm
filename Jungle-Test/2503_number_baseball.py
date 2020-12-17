@@ -6,6 +6,10 @@ game = []
 
 # 입력하면서 조건에 맞는 숫자들 True 만들기
 
+## 집합 자료구조
+## 문자 - 문자 == 0 되면 같다
+## 예시를 들면서 천천히 생각하자
+
 for _ in range(n):
     game = list((map(int,read().rstrip().split())))
 
