@@ -1,29 +1,65 @@
 import sys
 read = sys.stdin.readline
 
-n = int(read())
-arr = []
-cnt = [0 0]
-for _ in range(n):
-    arr.append(list(map(int,read().rstrip().split())))
 
-# arr 을 len(arr) // 2 를 하여 인덱스
-def cut(arr,n):
+# 범위를 줄여서도 다 가봐야함?
+def count_number(arr,find,strt,end):
+    cnt = 0
+
+    a = first(arr,find,strt,end)
+
+    b = last(arr,find,strt,end)
+    
+    # 못찾으면
+    if a is None and b is None:
+        cnt = -1
+    # 찾으면 ( 한쪽 만 찾는 경우는 없음 )
+    else:
+        cnt = b-a + 1
+
+    return cnt
 
 
-    i = len(cut)
-    # 다 잘렸으면
-    if n == 0 :
-        if arr[0][0]:
-            cnt[0] += 1
-        else:
-            cnt[1] += 1
+def first(arr,find,strt,end):
+    # 못찾음
+    if strt > end :
+        return None
 
     else:
+        mid = (strt+end) // 2
+        # 내가 찾은 놈이 find  &&& ***왼쪽 놈이 나보다 작거나 없어야함***
+        if (arr[mid] == find) and (arr[mid-1] < find or mid ==0):
+            return mid
 
-        k = n // 2
-        cut(arr[0:k][0:k],k)
+        # 큰 놈이면
+        elif arr[mid] < find:
+            # 이 함수 불러와 !! 여기로 들어가~
+            return first(arr, find, mid+1, end)
 
-        cut(arr[k:n][k:n],k)
+        # 작은놈이거나, ***찾은놈이 find 인데, 왼쪽에 똑같은게 더있으면***
+        else:
+            return first(arr,find,strt,mid-1)
 
-        cut(arr[])
+def last(arr,find,strt,end):
+    # 못찾음
+    if strt > end:
+        return None
+    
+    else:
+        mid = (strt + end) // 2
+
+        # 내가 찾은 놈이 find &&& *** 우측 놈이 나보다 크거나, 내가 우측 끝에 있을
+        if (arr[mid] == find) and (arr[mid+1] > find or mid == n-1):
+            return mid
+
+        elif arr[mid] > find:
+            return last(arr, find, strt, mid-1)
+
+        ## 찾고있는놈이 더 크거나, find를 찾았는데 우측에 더 있거나 내가 우측 끝에 없을 경우
+        else:
+            return last(arr,find, mid+1, end)
+
+n, find = map(int,read().rstrip().split())
+arr = list(map(int,read().rstrip().split()))
+
+print(count_number(arr,find,0,n-1))
