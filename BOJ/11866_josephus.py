@@ -15,9 +15,11 @@ while queue:
         
     josephus.append(queue.popleft())
 
-print("<",end="")
-for i in range(n):
-    if i == n-1:
-        print("{}>".format(josephus[i]),end ="")
-    else:
-        print("{}, ".format(josephus[i]), end ="")
+# print("<",end="")
+# for i in range(n):
+#     if i == n-1:
+#         print("{}>".format(josephus[i]),end ="")
+#     else:
+#         print("{}, ".format(josephus[i]), end ="")
+
+print("<"+", ".join([str(i) for i in josephus])+">")
