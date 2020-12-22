@@ -15,17 +15,14 @@ try :
         # 시작 괄포들은 그냥 넣는다.
         if br == "(":
             stack.append(br)
-            cnt += 1
 
         elif br == "[":
             stack.append(br)
-            cnt += 30
 
 
         # 닫는 괄호들 등장
 
         elif br == ")":
-            cnt -= 1
             if stack[-1] == "(":
                 stack.pop()
                 stack.append(2)
@@ -39,7 +36,6 @@ try :
                 stack.append(2*calc)
         
         elif br == "]":
-            cnt -= 30
             if stack[-1] == "[":
                 stack.pop()
                 stack.append(3)
