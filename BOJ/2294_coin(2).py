@@ -16,7 +16,7 @@ coins.sort(reverse = True)
 
 # 인덱스로 중복값 제거
 # visited = [False] * 10001
-visited = [False] * (K+1)
+visited = [False] * (goal+1)
 
 queue = deque(coins)
 
