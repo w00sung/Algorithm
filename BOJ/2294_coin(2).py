@@ -8,6 +8,11 @@ coins = []
 for _ in range(N):
     coins.append(int(read()))
 
+# 바로 종료조건 추가
+if goal in coins:
+    print(1)
+    exit()
+
 # 중복값 제거
 coins = list(set(coins))
 
@@ -34,22 +39,17 @@ while queue:
         if now == goal:
             # 레벨 별로 진행 
             # --> 먼저 찾은게 최소 값이다.
-            suc = True
-            break
+            print(cnt)
+            exit()
         
         # 중복값 제거하면 시간 줄일 수 있음.
         for coin in coins:
             # 여기서 cnt +1 하고 끝내면
             # 이 level에서 성공하는 것 있는 확률 배제하는것임
             # 메모리 초과 줄이는 방법
-            if now + coin <= goal :
-                if visited[now+coin] == False:
-                    queue.append(now+coin)
-                    visited[now+coin] = True
-    if suc == True:
-        break
+            if now + coin <= goal and visited[now+coin] == False:
+                queue.append(now+coin)
+                visited[now+coin] = True
 
-if suc:
-    print(cnt)
-else:
-    print(-1)
+
+print(-1)
