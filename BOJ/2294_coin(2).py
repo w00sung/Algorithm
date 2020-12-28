@@ -4,49 +4,52 @@ read = sys.stdin.readline
 
 
 N, goal = map(int, read().rstrip().split())
-coin = []
+coins = []
 for _ in range(N):
-    coin.append(int(read()))
+    coins.append(int(read()))
 
-coin.sort(reverse = True)
-visited = [False] * (N):
+# 중복값 제거
+coins = list(set(coins))
+
+# 큰값부터 넣을 수 있도록 정렬
+coins.sort(reverse = True)
+
+# 인덱스로 중복값 제거
+# visited = [False] * 10001
+visited = [False] * (K+1)
+
+queue = deque(coins)
+
 cnt = 0
-tot = 0
-min_cnt = float('inf')
-res = False
 
-for i in range(N):
-    tot = 0
-    cnt = 0
-    queue = deque(coin[i:])
+suc = False
+while queue:
+    cnt += 1
     
-    while queue:
+    # 레벨 별로 진행됨
+    for i in range(len(queue)):
+        # queue 개수만큼 한바퀴 돈다.
+        now = queue.popleft()
 
-        now = queue[0]
-        
-        if tot + now > goal:
-            queue.popleft()
-            continue
-        
-        cnt += 1
-        if cnt > min_cnt:
-            break
-
-        if tot + now == goal:
-            res = True
+        if now == goal:
+            # 레벨 별로 진행 
+            # --> 먼저 찾은게 최소 값이다.
+            suc = True
             break
         
-        if tot + now < goal:
-            tot += now
-            continue
+        # 중복값 제거하면 시간 줄일 수 있음.
+        for coin in coins:
+            # 여기서 cnt +1 하고 끝내면
+            # 이 level에서 성공하는 것 있는 확률 배제하는것임
+            # 메모리 초과 줄이는 방법
+            if now + coin <= goal :
+                if visited[now+coin] == False:
+                    queue.append(now+coin)
+                    visited[now+coin] = True
+    if suc == True:
+        break
 
-    
-    if cnt == 0:
-        continue
-    if res == True:
-        min_cnt = min(cnt,min_cnt)
-
-if res ==True: 
-    print(min_cnt)
+if suc:
+    print(cnt)
 else:
     print(-1)
