@@ -30,6 +30,7 @@ queue.append((N,1))
 
 while queue:
     
+    # piece : now가 필요한 개수
     now, piece = queue.popleft()
     # 필요한 것, 필요한 개수
     
@@ -37,6 +38,7 @@ while queue:
     if basic[now]:
         res[now] = piece
 
+    # sub_piece : now가 만들어지는데 sub가 필요한 개수
     for sub, sub_piece in graph[now]:
         # 연결선 제거
         indegree[sub] -= 1

@@ -7,7 +7,7 @@ n_city, n_road, dist, strt = map(int,read().rstrip().split())
 
 # 도시이름, idx 맞춰주기
 city = [[] * (n_city+1) for _ in range(n_city+1)]
-visitied = [False] * (n_city+1)
+# visitied = [False] * (n_city+1)
 for _ in range(n_road):
     frm, to = map(int,read().rstrip().split())
     city[frm].append(to)
