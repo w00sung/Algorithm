@@ -29,7 +29,7 @@ def dfs(depth,frm):
             # 현재의 나보다 큰 값을 넘겨준다 !!!!!!!!
             # 2로 dfs를 들어가면, range는 2부터 받는다.
 
-            
+
             # frm이 아니라 i 다.
             # 지금의 나보다 큰값으로 range를 돌린다.
             dfs(depth + 1 ,  i + 1)
@@ -44,3 +44,5 @@ def dfs(depth,frm):
             #     visited[i] = False
 
 dfs(1,1)
+# 깊이만 던져주던 dfs에서, 
+# 시작점을 던져주는 dfs로 바꿔줌
