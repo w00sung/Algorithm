@@ -12,15 +12,15 @@ for _ in range(N):
 
 visited = [[False] * M for _ in range(N)]
 
-# dx = [-1,1,0,0]
-# dy = [0,0,-1,1]
-
 # 초기에 큐에 넣어주기
 for i in range(1,N):
     for j in range(1,M):
         if iceburg[i][j] != 0:
             xyqueue.append((i,j))
 
+
+# dx = [-1,1,0,0]
+# dy = [0,0,-1,1]
 
 # 숫자 줄이기
 def after_year(x,y):
@@ -90,10 +90,6 @@ def count_iceburg(x,y):
     return True
 
 
-year = 0
-piece = 0
-while True:
-    
     # 빙산 세기
     # -- 더 멋진 방법 없나 ? --
     # for i in range(1,N):
@@ -105,6 +101,10 @@ while True:
     #         if iceburg[i][j] != 0:
     #             xyqueue.append((i,j))
 
+year = 0
+piece = 0
+while True:
+    
     # 조각 2개되기 전에 0 되면,
     if not xyqueue:
         year = 0
