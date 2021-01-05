@@ -34,11 +34,13 @@ while order:
 
 
     stuff = order.popleft()
+    # 현재 순서 pop
     stuffs[stuff].pop()
     ### 곧 올 순서
     # 다시 올 일 없으면
 
     if len(stuffs[stuff]) == 0:
+        # 가장 먼저 빠지게 조작
         soon = 101
     else:
         # 다음 녀석으로 뽑혀야 됨
@@ -50,7 +52,7 @@ while order:
     # 물건 있으면 뺄 필요 없다. - 다음 순서는 업데이트 해줘야됨
     # 또 오는 거는 제일 빨리 오는 거임
     if multitab_flag[stuff]:
-
+        # 내가 들어올 순서에서 나보다 빨리 나갈 기구 없다.
         multitab.pop()
         heapq.heappush(multitab,(-soon,stuff))
 
@@ -64,11 +66,8 @@ while order:
         left_stuff = heapq.heappop(multitab)[1]
         multitab_flag[left_stuff] = False
         cnt += 1
-        heapq.heappush(multitab,(-soon,stuff))
         
-    else:
-        heapq.heappush(multitab,(-soon,stuff))
-
+    heapq.heappush(multitab,(-soon,stuff))
     multitab_flag[stuff] = True
 
 print(cnt)
