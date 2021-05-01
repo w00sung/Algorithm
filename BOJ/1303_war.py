@@ -19,21 +19,21 @@ def dfs(x,y,flag,color,depth):
         
         if flag[move_x][move_y] and field[move_x][move_y] == color:
             flag[move_x][move_y] = False
-            color_dict[color] += 1
+            # color_dict[color] += 1
             depth = dfs(move_x,move_y,flag,color, depth+1)
     
     return depth
 
 
 flag = [[True]*N for _ in range(M)]
-color_dict= {"W":0,"B":0}
+# color_dict= {"W":0,"B":0}
 ans=[0,0]
 
 for i in range(M):
     for j in range(N):
         if flag[i][j]:
             color = field[i][j]
-            color_dict[color] = 1
+            # color_dict[color] = 1
             flag[i][j] = False
             # print("FINISH DFS",dfs(i,j,flag,color,1))
             depth = dfs(i,j,flag,color,1)
